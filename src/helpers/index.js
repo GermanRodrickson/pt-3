@@ -1,1 +1,1 @@
-export const kelvinToCelsius = temp => temp - 273.15;
+export const kelvinToCelsius = temp => Math.trunc(temp - 273.15);
