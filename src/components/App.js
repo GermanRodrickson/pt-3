@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 import Card from './Card';
+import Loading from './Loading';
 import { kelvinToCelsius } from '../helpers/';
 
 const App = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
+
+  let isLoaded = false;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,11 +22,11 @@ const App = () => {
     fetchData();
   }, []);
 
-  return (
-    <section>
-      <Card name={data.name} temp={kelvinToCelsius()} />
-    </section>
-  );
+  data.main
+    ? (isLoaded = <Card name={data.name} temp={kelvinToCelsius(data.main.temp)} />)
+    : (isLoaded = <Loading />);
+
+  return <section>{isLoaded}</section>;
 };
 
 export default App;
