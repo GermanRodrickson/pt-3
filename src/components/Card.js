@@ -14,7 +14,7 @@ const Title = styled.h2`
   text-align: center;
 `;
 
-const Temperature = styled.strong`
+const WeatherInfo = styled.strong`
   display: block;
   text-align: center;
 `;
@@ -23,7 +23,9 @@ export default props => {
   return (
     <Wrapper>
       <Title>{props.name}</Title>
-      <Temperature>{props.temp} ºC</Temperature>
+      <WeatherInfo>{props.temp} ºC</WeatherInfo>
+      <WeatherInfo>{props.pressure} pressure</WeatherInfo>
+      <WeatherInfo>{props.windSpeed} windSpeed</WeatherInfo>
     </Wrapper>
   );
 };
