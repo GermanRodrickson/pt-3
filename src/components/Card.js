@@ -23,7 +23,7 @@ export default props => {
   return (
     <Wrapper>
       <Title>{props.name}</Title>
-      <Temperature>16 ºC</Temperature>
+      <Temperature>{props.temp} ºC</Temperature>
     </Wrapper>
   );
 };
