@@ -26,12 +26,12 @@ const App = () => {
         const response = await fetch(
           `https://raw.githubusercontent.com/Influencity/job-offers/master/coding-test/weather-api-2019-04/${city}.json`
         );
-
         const res = await response.json();
         const [item] = res.list;
 
-        setData(data.push(item));
-        console.log(data);
+        setData(item);
+        // setData(data.push(item));
+        // console.log(data)
       };
 
       fetchData();
@@ -40,15 +40,18 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (data) {
-    isLoaded = data.map(item => {
+  console.log(data);
+
+  if (data.main) {
+    const { name, main, wind } = data;
+    isLoaded = (
       <Card
-        name={item.name}
-        temp={kelvinToCelsius(item.main.temp)}
-        pressure={item.main.pressure}
-        windSpeed={item.wind.speed}
-      />;
-    });
+        name={name}
+        temp={kelvinToCelsius(main.temp)}
+        pressure={main.pressure}
+        windSpeed={wind.speed}
+      />
+    );
   } else {
     isLoaded = <Loading />;
   }
